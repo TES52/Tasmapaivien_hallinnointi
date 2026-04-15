@@ -1,0 +1,240 @@
+body, html {
+  height: 100%;
+}
+
+.background1 {
+  background-color: #000000;
+  background-image: url("https://cdn.pixabay.com/photo/2013/03/20/13/18/sky-95185_1280.jpg");
+  height: 100%;
+
+    
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+
+}
+
+.background_2 {
+  background-color: #F1B6D7 ;
+}
+
+.background {
+  background-color: #ace3ca ;
+}
+.varjo {
+  color: black;
+  
+  text-shadow: 2px 2px 5px red;
+}
+
+.varjo_purple {
+  color: black;
+  
+  text-shadow: 2px 2px 5px purple;
+}
+
+
+
+
+.forms_tyyli{
+    background-color:#d1e3db;
+    
+}
+
+
+.bottom-center {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+}
+
+.bottom-left {
+  position: absolute;
+  bottom: 8px;
+  left: 16px;
+}
+
+.top-center {
+  position: absolute;
+  top: 8px;
+  right: 50%;
+}
+
+.top-left {
+  position: absolute;
+  top: 8px;
+  left: 16px;
+}
+
+.top-right {
+  position: absolute;
+  top: 8px;
+  right: 16px;
+}
+
+.bottom-right {
+  position: absolute;
+  bottom: 8px;
+  right: 16px;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+  .centered_right {
+  position: absolute;
+  top: 50%;
+  left: 20%;
+  transform: translate(-50%, -50%);
+ 
+}
+.centered_second {
+  position: absolute;
+  top:60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+ 
+}
+
+.centered_third {
+  position: absolute;
+  top:53%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+ 
+}
+
+
+.button {
+  background-color: #F46F9C;
+  border: none;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition: all 0.2s ease-in-out;
+  
+}
+
+.button-tyyli {
+  
+  
+  border: none;
+  color: black;
+  padding: 20px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  transition: all 0.2s ease-in-out;
+   border-radius: 12px;
+   font-weight: bold;
+  
+}
+
+.takaisin-button {
+  border: none;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  font-size: 30px;
+  transition: all 0.2s ease-in-out;
+  
+}
+
+.glow-button:hover {
+  color:white;
+  box-shadow: 0 5px 15px rgba(145, 92, 182, .4);
+}
+
+.p3 {
+  font-family: "Lucida Console", "Courier New", monospace;
+}
+
+.suuri {
+    font-size: 50px;
+}
+
+
+.tausta {
+    background-color: #f1f1f1;
+}
+
+
+.table-tyyli {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    margin: 20px 0;
+    font-size: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.table-tyyli th {
+    background-color: #2c3e50;
+    color: white;
+    text-align: left;
+    padding: 10px;
+}
+
+.table-tyyli td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.table-tyyli tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.table-tyyli tr:hover {
+    background-color: #f1f1f1;
+}
+
+
+
+.form-tyyli input,
+.form-tyyli select {
+    width: auto;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+
+}
+
+.form-tyyli button {
+    width: auto;
+    padding: 12px;
+    background-color: #2c3e50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.form-tyyli button:hover {
+    background-color: #34495e;
+}
+
+.form-tyyli .form-group {
+    margin-bottom: 15px;
+}
+
+.form-tyyli label {
+    display: block;
+    margin-bottom: 5px;
+    font-size:18px;
+    font-weight: bold;
+}
+
+.form-group{
+    margin-left: 10px;
+}
