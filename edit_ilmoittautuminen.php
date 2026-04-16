@@ -68,36 +68,51 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <title>Muokkaa ilmoittautumista</title>
     <link rel="stylesheet" href="tyyli.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 </head>
 <body class="tausta">
 <center>
 <h2 class="suuri">Muokkaa ilmoittautumista</h2>
 </center>
-<form method="POST" class="form-tyyli centered">
 
-    Email:<br>
-    <input type="email" name="email"
-           value="<?= htmlspecialchars($data["email"]) ?>" required>
-    <br><br>
+<div class="forms_tyyli" style="margin: 40px auto; max-width:600px;">
 
-    Koulu:<br>
-    <input type="text" name="koulu"
-           value="<?= htmlspecialchars($data["koulu"]) ?>" required>
-    <br><br>
+    <h2>Muokkaa tietoja</h2>
+    <p>Täytäthän tiedot päivittääksesi käyttäjän.</p>
 
-    Nimi:<br>
-    <input type="text" name="nimi"
-           value="<?= htmlspecialchars($data["nimi"]) ?>" required>
-    <br><br>
+    <form method="POST" class="form-tyyli">
 
-    Erityisruokavalio:<br>
-    <input type="text" name="erityisruokavalio"
-           value="<?= htmlspecialchars($data["erityisruokavalio"]) ?>">
-    <br><br>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" class="form-control"
+                   value="<?= htmlspecialchars($data["email"]) ?>" required>
+        </div>
 
-   <button style="btn btn-warning; " type="submit">← Takaisin</button>
-    <button type="submit" style="margin-left:12px">Tallenna</button>
-</form>
+        <div class="form-group">
+            <label for="koulu">Koulu:</label>
+            <input type="text" id="koulu" name="koulu" class="form-control"
+                   value="<?= htmlspecialchars($data["koulu"]) ?>" required>
+        </div>
+
+        <div class="form-group">
+            <label for="nimi">Nimi:</label>
+            <input type="text" id="nimi" name="nimi" class="form-control"
+                   value="<?= htmlspecialchars($data["nimi"]) ?>" required>
+        </div>
+
+        <div class="form-group">
+            <label for="erityisruokavalio">Erityisruokavalio:</label>
+            <input type="text" id="erityisruokavalio" name="erityisruokavalio" class="form-control"
+                   value="<?= htmlspecialchars($data["erityisruokavalio"]) ?>">
+        </div>
+
+        <div class="form-group">
+            <button type="submit" name="back" class="btn btn-warning">← Takaisin</button>
+            <button type="submit" name="save" class="btn btn-primary" style="margin-left:12px;">Tallenna</button>
+        </div>
+
+    </form>
+</div>
 
 <br>
 

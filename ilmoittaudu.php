@@ -134,35 +134,49 @@ $user_forms_result = mysqli_stmt_get_result($user_forms_stmt);
 </head>
 <body>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-      <link rel="stylesheet" href="tyyli.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="tyyli.css">
     <style>
-        body{ font: 14px sans-serif; }
+        body { font: 14px sans-serif; }
     </style>
- <a class="takaisin-button" href="index.php">←</a>
 
+    
+    <a class="takaisin-button" href="welcome.php"> ← </a>
 
-<?php if (!empty($_SESSION["success"])): ?>
-    <p style="color: green;">✔ Ilmoittautuminen onnistui / poistettu</p>
-    <?php unset($_SESSION["success"]); ?>
-<?php endif; ?>
+   
+    <div class="w3-container" style="display: flex; align-items: center; justify-content: center; margin-top: 20px;">
+        <img src="img/vamia_logo.jpg" style="height: 80px; margin-right: 20px;">
+        <h1 style="margin-top:0">Ilmoittautuminen</h1>
+    </div>
+    
+    <br>
 
-<?php if (!empty($error)): ?>
-    <p style="color: red;"><?= htmlspecialchars($error) ?></p>
-<?php endif; ?>
+    <!-- Form Wrapperi -->
+    <div class="forms_tyyli" style="margin: 40px auto; max-width:600px;">
+        
+        <!-- Success / Error viesti -->
+        <?php if (!empty($_SESSION["success"])): ?>
+            <p style="color: green; text-align: center; font-weight: bold; margin-bottom: 20px;">
+                ✔ Ilmoittautuminen onnistui / poistettu
+            </p>
+            <?php unset($_SESSION["success"]); ?>
+        <?php endif; ?>
 
+        <?php if (!empty($error)): ?>
+            <p style="color: red; text-align: center; font-weight: bold; margin-bottom: 20px;">
+                <?= htmlspecialchars($error) ?>
+            </p>
+        <?php endif; ?>
 
-<div class="w3-container ">
-    <img src="img/vamia_logo.jpg" style="float: left; margin-right: 10px;">
-   <h2 style="float: left;" class="suuri">Ilmoittautuminen</h2>
-</div>
-<br>
-<div class="tausta ">
-<form method="POST" class="form-tyyli  ">
+        <!-- Form Headeri -->
+        <h2>Ilmoittautuminen</h2>
+        <p>Täytäthän tiedot ilmoittautuaksesi tapahtumaan.</p>
 
-    <div class="form-group">
+        <!-- Form -->
+        <form method="POST" class="form-tyyli">
+           <div class="form-group">
         <label for="tapahtuma_ID">Tapahtuma:</label>
-        <select name="tapahtuma_ID" id="tapahtuma_ID" required>
+        <select name="tapahtuma_ID" id="tapahtuma_ID" class="form-control full-width-select" required>
             <?php while ($row = mysqli_fetch_assoc($events_stmt)): ?>
                 <option value="<?= htmlspecialchars($row["id"]) ?>"
                     <?= ($row["id"] == $tapahtuma_ID) ? "selected" : "" ?>>
@@ -172,81 +186,77 @@ $user_forms_result = mysqli_stmt_get_result($user_forms_stmt);
         </select>
     </div>
 
-    <div class="form-group">
-        <label for="email">Opinnonohjaajan sähköposti:</label>
-        <input type="email" id="email" name="email" required
-            value="<?= htmlspecialchars($old["email"] ?? $_COOKIE["email"] ?? "") ?>">
+            <div class="form-group">
+                <label for="email">Opinnonohjaajan sähköposti:</label>
+                <input type="email" id="email" name="email" class="form-control" required
+                    value="<?= htmlspecialchars($old["email"] ?? $_COOKIE["email"] ?? "") ?>">
+            </div>
+
+            <div class="form-group">
+                <label for="koulu">Oppilaan koulu:</label>
+                <input type="text" id="koulu" name="koulu" class="form-control" required
+                    value="<?= htmlspecialchars($old["koulu"] ?? $_COOKIE["koulu"] ?? "") ?>">
+            </div>
+
+            <div class="form-group">
+                <label for="nimi">Oppilaan nimi (Etu- ja sukunimi):</label>
+                <input type="text" id="nimi" name="nimi" class="form-control" required
+                    value="<?= htmlspecialchars($old["nimi"] ?? "") ?>">
+            </div>
+
+            <div class="form-group">
+                <label for="erityisruokavalio">Erityisruokavalio:</label>
+                <input type="text" id="erityisruokavalio" name="erityisruokavalio" class="form-control"
+                    value="<?= htmlspecialchars($old["erityisruokavalio"] ?? "") ?>">
+            </div>
+
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary" value="Lähetä">
+                <input type="reset" class="btn btn-secondary ml-2" value="Nollaa">
+            </div>
+        </form>
     </div>
 
-    <div class="form-group">
-        <label for="koulu">Oppilaan koulu:</label>
-        <input type="text" id="koulu" name="koulu" required
-            value="<?= htmlspecialchars($old["koulu"] ?? $_COOKIE["koulu"] ?? "") ?>">
+    <!-- Table -->
+    <div style="margin: 40px auto; max-width: 95%;">
+        <hr>
+        <h3>Omat ilmoittautumiset</h3>
+
+        <?php if (mysqli_num_rows($user_forms_result) > 0): ?>
+            <table class="table-tyyli">
+                <tr>
+                    <th>Tapahtuma</th>
+                    <th>Nimi</th>
+                    <th>Koulu</th>
+                    <th>Erityisruokavalio</th>
+                    <th>Sähköposti</th>
+                    <th>Toiminnot</th>
+                </tr>
+
+                <?php while ($row = mysqli_fetch_assoc($user_forms_result)): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($row["tapahtuma_nimi"]) ?></td>
+                        <td><?= htmlspecialchars($row["nimi"]) ?></td>
+                        <td><?= htmlspecialchars($row["koulu"]) ?></td>
+                        <td><?= htmlspecialchars($row["erityisruokavalio"]) ?></td>
+                        <td><?= htmlspecialchars($row["email"]) ?></td>
+                        <td>
+                            <a href="edit_ilmoittautuminen.php?id=<?= $row["id"] ?>">
+                                <button type="button" class="btn btn-warning">Muokkaa</button>
+                            </a>
+
+                            <form method="POST" style="display:inline;"
+                                  onsubmit="return confirm('Poistetaanko varmasti?');">
+                                <input type="hidden" name="delete_id" value="<?= $row["id"] ?>">
+                                <button type="submit" class="btn btn-danger">Poista</button>
+                            </form>
+                        </td>
+                    </tr>
+                <?php endwhile; ?>
+            </table>
+        <?php else: ?>
+            <p>Ei vielä ilmoittautumisia.</p>
+        <?php endif; ?>
     </div>
-
-    <div class="form-group">
-        <label for="nimi">Oppilaan nimi (Etu- ja sukunimi):</label>
-        <input type="text" id="nimi" name="nimi" required
-            value="<?= htmlspecialchars($old["nimi"] ?? "") ?>">
-    </div>
-
-    <div class="form-group">
-        <label for="erityisruokavalio">Erityisruokavalio:</label>
-        <input type="text" id="erityisruokavalio" name="erityisruokavalio"
-            value="<?= htmlspecialchars($old["erityisruokavalio"] ?? "") ?>">
-    </div>
-
-    <button type="submit" style="margin-left: 10px;">Lähetä</button>
-
-</form>
-</div>
-<br><br>
-<div>
-<hr>
-
-<h3>Omat ilmoittautumiset</h3>
-
-<?php if (mysqli_num_rows($user_forms_result) > 0): ?>
-
-<table class="table-tyyli">
-    <tr>
-        <th>Tapahtuma</th>
-        <th>Nimi</th>
-        <th>Koulu</th>
-        <th>Erityisruokavalio</th>
-        <th>Sähköposti</th>
-        <th>Toiminnot</th>
-    </tr>
-
-    <?php while ($row = mysqli_fetch_assoc($user_forms_result)): ?>
-        <tr>
-            <td><?= htmlspecialchars($row["tapahtuma_nimi"]) ?></td>
-            <td><?= htmlspecialchars($row["nimi"]) ?></td>
-            <td><?= htmlspecialchars($row["koulu"]) ?></td>
-            <td><?= htmlspecialchars($row["erityisruokavalio"]) ?></td>
-            <td><?= htmlspecialchars($row["email"]) ?></td>
-            <td>
-
-       
-                <a href="edit_ilmoittautuminen.php?id=<?= $row["id"] ?>">
-                    <button type="button" class="btn btn-warning">Muokkaa</button>
-                </a>
-  
-                <form method="POST" style="display:inline;"
-                      onsubmit="return confirm('Poistetaanko varmasti?');">
-                    <input type="hidden" name="delete_id" value="<?= $row["id"] ?>">
-                    <button type="submit" class="btn btn-danger">Poista</button>
-                </form>
-
-            </td>
-        </tr>
-    <?php endwhile; ?>
-
-</table>
-
-<?php else: ?>
-    <p>Ei vielä ilmoittautumisia.</p>
-<?php endif; ?>
-</div>
 </body>
 </html>

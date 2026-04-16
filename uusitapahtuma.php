@@ -69,16 +69,21 @@ $result = mysqli_query($link, $sql);
     <title>Lisää tapahtuma</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
      <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+      <link rel="stylesheet" href="tyyli.css">
     <style>
         .wrapper { width: 500px; margin: 50px auto; }
         .event { border: 1px solid #ddd; padding: 10px; margin-top: 10px; }
     </style>
 </head>
 <body>
-     <div class="w3-container ">
-    <img src="img/vamia_logo.jpg" style="float: left;">
+    
+      <a ="float: left;" class="takaisin-button" style="margin-left:10px" href="vamia_welcome.php">←</a>
+    <div class="w3-container" style="display: flex; align-items: center; justify-content: center; margin-top: 20px;">
+      
+    <img src="img/vamia_logo.jpg" style="height: 80px; margin-right: 20px;">
+    <h1 style="margin-top:0">Tapahtumien hallinnointi</h1>
 </div>
-<a href="welcome.php">← Takaisin</a>
+
 <div class="wrapper">
     <h2>Lisää tapahtuma</h2>
 

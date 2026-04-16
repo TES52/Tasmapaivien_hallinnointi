@@ -26,22 +26,27 @@ $result = mysqli_query($link, $sql);
 <body>
 
 <div class="w3-container w3-teal">
-    <a class="takaisin-button" href="welcome.php">←</a>
-    <h1>Vamian täsmäpäivät</h1>
+   <a class="takaisin-button" href="javascript:history.back()">←</a>
+    <center>
+     <img src="img/vamia_logo.jpg" alt="logo" style="margin-top:10px;margin-right:10px">
+     <br>
+    
+<h1>Vamian täsmäpäivät</h1>
+</center>
 </div>
 
 
 <div class="w3-container">
+<br>
 
-    <h3>Tapahtumat</h3>
+<?php while($row = mysqli_fetch_assoc($result)): ?>
 
-    <?php while($row = mysqli_fetch_assoc($result)): ?>
+    <?php
+    $isPast = (strtotime($row["pvm"]) < time());
+    ?>
 
-        <?php
-        $isPast = (strtotime($row["pvm"]) < time());
-        ?>
-
-        <div class="event" style="background-color: <?php echo $isPast ? '#f8d7da' : '#d4edda'; ?>; padding:10px; margin-bottom:10px;">
+    <div class="event-wrapper" style="max-width: 600px; margin: 10px auto;">
+        <div class="event" style="background-color: <?php echo $isPast ? '#f8d7da' : '#d4edda'; ?>; padding:15px; border-radius:8px; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
 
             <strong><?php echo htmlspecialchars($row["nimi"]); ?></strong><br>
 
@@ -66,17 +71,12 @@ $result = mysqli_query($link, $sql);
             <?php endif; ?>
 
         </div>
+    </div>
 
-    <?php endwhile; ?>
+<?php endwhile; ?>
 
 </div>
 <br>
-
-
-
-<div class="w3-container">
-    <img src="img/vamia_logo.jpg" alt="logo">
-</div>
 
 </body>
 </html>

@@ -75,7 +75,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             
             // Set parameters
             $param_username = $username;
-            $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
+            $param_password = password_hash($password, PASSWORD_DEFAULT); // salasana hash
             
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
@@ -85,12 +85,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 echo "Oho! Jokin meni vikaan. Yritäthän myöhemmin uudelleen.";
             }
 
-            // Close statement
+            // sulje statement
             mysqli_stmt_close($stmt);
         }
     }
     
-    // Close connection
+    // sulje yhteys
     mysqli_close($link);
 }
 ?>
@@ -101,37 +101,52 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <meta charset="UTF-8">
     <title>Sign Up</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+     <link rel="stylesheet" href="tyyli.css">
     <style>
         body{ font: 14px sans-serif; }
         .wrapper{ width: 360px; padding: 20px; }
     </style>
 </head>
-<body>
-    <div class="wrapper">
-        <h2>Rekisteröidy</h2>
-        <p>Täytäthän tämän luodaksesi käyttäjän.</p>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-            <div class="form-group">
-                <label>Käyttäjänimi</label>
-                <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
-                <span class="invalid-feedback"><?php echo $username_err; ?></span>
-            </div>    
-            <div class="form-group">
-                <label>Salasana</label>
-                <input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>">
-                <span class="invalid-feedback"><?php echo $password_err; ?></span>
-            </div>
-            <div class="form-group">
-                <label>Vahvista salasana</label>
-                <input type="password" name="confirm_password" class="form-control <?php echo (!empty($confirm_password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $confirm_password; ?>">
-                <span class="invalid-feedback"><?php echo $confirm_password_err; ?></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="Submit">
-                <input type="reset" class="btn btn-secondary ml-2" value="Reset">
-            </div>
-            <p>Onko sinulla jo käyttäjä? <a href="login.php">Kirjaudu sisään täältä</a>.</p>
-        </form>
-    </div>    
+<body class="background">
+   <div class="wrapper forms_tyyli" style="margin: 40px auto; max-width:600px; text-align:center;">
+
+    <!-- Logo -->
+    <div class="w3-container">
+        <img src="img/vamia_logo.jpg" alt="logo" 
+             style="width: 100%; max-width:200px; height:auto; margin:10px auto; display:block;">
+    </div>
+
+    <h2>Rekisteröidy</h2>
+    <p>Täytäthän tämän luodaksesi käyttäjän.</p>
+
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+
+        <div class="form-group">
+            <label>Käyttäjänimi</label>
+            <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
+            <span class="invalid-feedback"><?php echo $username_err; ?></span>
+        </div>    
+
+        <div class="form-group">
+            <label>Salasana</label>
+            <input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>">
+            <span class="invalid-feedback"><?php echo $password_err; ?></span>
+        </div>
+
+        <div class="form-group">
+            <label>Vahvista salasana</label>
+            <input type="password" name="confirm_password" class="form-control <?php echo (!empty($confirm_password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $confirm_password; ?>">
+            <span class="invalid-feedback"><?php echo $confirm_password_err; ?></span>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="Lähetä">
+            <input type="reset" class="btn btn-secondary ml-2" value="Nollaa">
+        </div>
+
+        <p>Onko sinulla jo käyttäjä? <a href="login.php" style="color:blue">Kirjaudu sisään täältä</a>.</p>
+
+    </form>
+</div>
 </body>
 </html>

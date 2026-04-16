@@ -45,11 +45,15 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             
         <br> <br><br><br>
         
-        <a href="vamia_login.php" class="btn btn-primary button-tyyli">
-             Olen Vamian opinto-ohjaaja
+    
+            
+        <a href="uusitapahtuma.php" class="btn btn-primary button-tyyli">
+            <img src="img/kalenteri_edit.png" style="height:45px; margin-right:10px;"> Hallitse tapahtumia
             </a>
             
-      
+            <a href="kaikki_ilmoittautumiset.php" class="btn btn-primary button-tyyli" style="margin-left:20px">
+            <img src="img/kalenteri_henkilo.png" style="height:45px;margin-right:10px;"> Näytä ilmoittautumiset
+            </a>
           </center> 
     </p>
 

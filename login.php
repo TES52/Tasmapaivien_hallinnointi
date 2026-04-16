@@ -91,39 +91,49 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         .wrapper{ width: 360px; padding: 20px; }
     </style>
 </head>
-<body class="background">
-    <div class="w3-container">
-    <img src="img/vamia_logo.jpg" alt="logo">
-</div>
-<div class="centered">
-    <div class="wrapper forms_tyyli">
-        <h2>Kirjaudu sisään</h2>
-        <p>Täytäthän käyttäjätiedot kirjautuaksesi sisään.</p>
 
-        <?php 
-        if(!empty($login_err)){
-            echo '<div class="alert alert-danger">' . $login_err . '</div>';
-        }        
-        ?>
-<div class="forms_tyyli">
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-            <div class="form-group">
-                <label>Käyttäjänimi</label>
-                <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
-                <span class="invalid-feedback"><?php echo $username_err; ?></span>
-            </div>    
-            <div class="form-group">
-                <label>Salasana</label>
-                <input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>">
-                <span class="invalid-feedback"><?php echo $password_err; ?></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="Login">
-            </div>
-            <p>Eikö sinulla ole vielä käyttäjää? <a href="register.php">Rekisteröidy nyt</a>!</p>
-        </form>
-        </div>
+<body class="background">
+    
+
+
+<div class="wrapper forms_tyyli" style="margin: 40px auto; max-width:600px; text-align:center;">
+
+    <!-- Logo -->
+    <div class="w3-container">
+        <img src="img/vamia_logo.jpg" alt="logo" 
+             style="width: 100%; max-width:200px; height:auto; margin:10px auto; display:block;">
     </div>
-   </div>
+
+    <h2>Kirjaudu sisään</h2>
+    <p>Täytäthän käyttäjätiedot kirjautuaksesi sisään.</p>
+
+    <?php 
+    if(!empty($login_err)){
+        echo '<div class="alert alert-danger">' . $login_err . '</div>';
+    }        
+    ?>
+
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+        <div class="form-group">
+            <label>Käyttäjänimi</label>
+            <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
+            <span class="invalid-feedback"><?php echo $username_err; ?></span>
+        </div>    
+
+        <div class="form-group">
+            <label>Salasana</label>
+            <input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>">
+            <span class="invalid-feedback"><?php echo $password_err; ?></span>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="Kirjaudu">
+            <input type="reset" class="btn btn-secondary ml-2" value="Nollaa">
+        </div>
+
+        <p>Eikö sinulla ole vielä käyttäjää? <a href="register.php" style="color:blue">Rekisteröidy nyt</a>!</p>
+    </form>
+</div>
+   
 </body>
 </html>
